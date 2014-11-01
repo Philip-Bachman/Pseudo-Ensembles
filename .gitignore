@@ -1,0 +1,16 @@
+*.py~
+*.swp
+*.npy
+*.csv
+*.dat
+*.data
+*.npz
+*.pkl
+*.pkl.gz
+*.png
+*.pyc
+.DS_STORE
+.DS_Store
+*.lprof
+/generalized_ear/data/*
+/generalized_ear/test_results/*
