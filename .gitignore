@@ -14,3 +14,5 @@
 *.lprof
 /generalized_ear/data/*
 /generalized_ear/test_results/*
+/CoreNLP/trees/*
+/CoreNLP/word_vecs/*
