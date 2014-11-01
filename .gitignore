@@ -16,3 +16,4 @@
 /generalized_ear/test_results/*
 /CoreNLP/trees/*
 /CoreNLP/word_vecs/*
+/CoreNLP/pretraining_code/training_text/*
