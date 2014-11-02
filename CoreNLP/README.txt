@@ -1,3 +1,30 @@
+We implemented our droppy, fuzzy Recursive Neural Tensor Network based on the
+code provided by the original developers of the RNTN. The main model is
+implemented across the files in "src/edu/stanford/nlp/sentidev". We also
+modified some files in "src/edu/stanford/nlp/neural", which you will need to
+put in place of their official CoreNLP counterparts. For copies of the exact
+data files, pre-trained word vectors, etc. used for generating the results in
+in the NIPS paper, please email.
+
+Repeated execution of the incantations given below should produce results at
+least as good as those reported in the paper, on average. The precise results
+that these incantations will reproduce are those for the "compact" RNTN,
+regularized by subspace sampling and fuzzing, initialized with pre-trained word
+vectors. All code required for pre-training is in "./pretraining_code".
+
+Here is the incantation for training on the fine-grained task:
+
+java -Xmx2g edu.stanford.nlp.sentidev.SentimentTraining -train -useDropout -minWordFreq 2 -lowercaseWordVectors -numHid 70 -regActNoise 0.05 -regParamNoise 0.02 -regTransform 4e-3 -regClassification 2e-4 -regWordVector 2e-4 -adagradResetWeight 0.001 -adagradResetFrequency 9 -learningRate 0.01 -trainPath ./trees/joint.txt -devpath ./trees/test.txt -norandomWordVectors -wordVectors ./word_vecs/wv_d70_mc2.txt
+
+Here is the incantation for training on the binary task:
+
+java -Xmx2g edu.stanford.nlp.sentidev.SentimentTraining -train -minWordFreq 2 -lowercaseWordVectors -useDropout -useBinary -numHid 70 -regActNoise 0.05 -regParamNoise 0.02 -regTransform 2e-3 -regClassification 2e-4 -regWordVector 2e-4 -adagradResetWeight 0.001 -adagradResetFrequency 9 -learningRate 0.005 -trainpath ./trees/joint.txt -devpath ./trees/test.txt -norandomWordVectors -wordVectors ./word_vecs/wv_d70_mc2.txt
+
+===============================================================================
+The rest of this file gives the contents of README.txt from the version of the
+CoreNLP package that we modified for our tests.
+===============================================================================
+
 Stanford CoreNLP  v224n - 2013-09-24
 Stanford's Suite of NLP Tools
 -----------------------------
